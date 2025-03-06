@@ -1,63 +1,72 @@
 class Node:
-
     def __init__(self,data):
         self.data = data
         self.next = None
 
-    
+
 class SLL:
-
     def __init__(self):
-        
         self.head = None
+        self.tail = None
 
-    def insert_begining(self,data):
-        
-        nb=Node(data)
-        nb.next = self.head
-        self.head = nb
     
-    def insert_end(self,data):
-
-        ne = Node(data)
-
-        temp = self.head
-        while temp.next:
-            temp = temp.next
-        temp.next = ne
-
-    def insert_postion(self,pos,data):
- 
-        np = Node(data)
-        temp = self.head
-
-        for i in range(1,pos - 1):
-            temp = temp.next
-        np.data=data
-        np.next=temp.next
-        temp.next=np
-
-
-
-    def display(self):
+    def add_begining(self,data):
+        add=Node(data)
 
         if self.head is None:
-            print("List is empty")
-        
+            self.head = add
+            self.tail = add
+        else:
+            add.next = self.head
+            self.head = add
+
+    def insert_end(self,data):
+        ne = Node(data)
+
+        if self.head is None:
+            self.head = ne
+            self.tail = ne
         else:
 
-            temp = self.head
-            while temp:
-                print(temp.data,end='-->')
-                temp=temp.next
-            print('None')
+            self.tail.next =ne
+            self.tail=ne
 
-sll=SLL()
-n = Node(200)
-sll.head = n
-n2=Node(500)
-n.next = n2
-sll.insert_begining(50)
-sll.insert_end(550)
-sll.insert_postion(2,1000)
+    def insert_position(self,data,pos):
+
+        np = Node(data)
+
+        if pos == 0:
+            self.add_begining(data)
+            return 
+        
+        temp = self.head
+
+        for _ in range(pos - 1):
+            if temp is None:
+                print("Out of range")
+                return
+            temp = temp.next
+        np.next = temp.next
+        temp.next = np
+            
+
+    def display(self):
+        temp = self.head
+
+        while temp:
+            print(temp.data,end="-->")
+            temp=temp.next
+        print("None")
+
+sll = SLL()
+
+
+
+sll.insert_end(700)
+
+sll.add_begining(500)
+sll.add_begining(600)
+sll.add_begining(800)
+sll.insert_position(40,1)
+
 sll.display()
