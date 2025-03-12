@@ -26,18 +26,20 @@ class SLL:
     
     def reverse(self):
 
-        prev = None
-        temp = self.head
-        self.tail = self.head
+      prev = None
 
-        while temp:
-            next_node = temp.next
-            temp.next = prev
-            prev = temp
-            temp = next_node
-        self.head = prev
+      temp =self.head
 
+      self.tail = self.head
 
+      while temp:
+
+        new_node = temp.next
+        temp.next = prev
+        prev = temp
+        temp = new_node
+
+      self.head = prev
     
 
     def display(self):

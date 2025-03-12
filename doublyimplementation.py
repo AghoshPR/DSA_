@@ -1,39 +1,71 @@
 class Node:
+
     def __init__(self,data):
         self.data = data
-        self.prev = None
         self.next = None
-    
-
+        self.prev = None
 
 class DLL:
+
     def __init__(self):
-        
         self.head = None
 
+    def add_begin(self,data):
+
+        nb = Node(data)
+
+        if self.head is None:
+            self.head = nb
+
+        else: 
+            nb.next = self.head
+            self.head.prev = nb 
+            self.head = nb
+
+    def add_end(self,data):
+
+        ne=Node(data)
+        if self.head is None:
+            self.head=ne
+        
+        else:
+
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next=ne
+            ne.prev = temp
+                
+                
 
     def display(self):
 
-        temp = self.head
+        if self.head is None:
+            print("Linkedlist is empty")
+        else:
 
-        while temp:
+            temp = self.head
+            while temp:
+                print(temp.data,end="-->")
+                temp = temp.next
+            print("None")
+
+    def rev(self):
+
+        temp =self.head
+
+        while temp.next is not None:
+            temp = temp.next
+        while temp is not None:
             print(temp.data,end="-->")
-            temp=temp.next
+            temp = temp.prev
 
-L=DLL()
 
-n1=Node(10)
+dll=DLL()
+dll.add_begin(10)
+dll.add_begin(20)
+dll.add_end(30)
+dll.display()
+print("after reverse")
+dll.rev()
 
-L.head = n1
-f
-n2=Node(20)
-
-n2.prev = n1
-n1.next = n2
-
-n3 = Node(30)
-
-n3.prev = n2
-n2.next = n3
-
-L.display()
