@@ -1,71 +1,137 @@
 class Node:
+    
     def __init__(self,data):
+        
         self.data = data
         self.next = None
-
+        
 
 class SLL:
+    
     def __init__(self):
         self.head = None
-        self.tail = None
+        
 
-    def insert_beginning(self,data):
-
+    def add_begin(self,data):
+        
         nb = Node(data)
-
+        
         if self.head is None:
             self.head = nb
-            self.tail =nb
         else:
+            
             nb.next = self.head
             self.head = nb
-
-    def insert_end(self,data):
+    
+    def add_end(self,data):
         
-        ne=Node(data)
-
+        ne = Node(data)
+        
         if self.head is None:
-            self.head =ne
-            self.tail = ne
+            self.head = ne
         else:
-
-            self.tail.next = ne
-            self.tail = ne
-
-    def insert_position(self,pos,data):
-
+            
+            temp = self.head
+            
+            while temp.next:
+                temp = temp.next
+            
+            temp.next = ne
+            
+    def insert_pos(self,data,pos):
+        
         np = Node(data)
-        if pos ==1:
-            self.insert_beginning(data)
+        
+        if self.head is None:
+            self.head = np
+        
+        
+        
+        elif pos == 1:
+            
+            self.add_end(data)
+            return 
+        
+        else:
+            
+            temp = self.head
+            
+            for _ in range(pos-2):
+                
+                if temp is None:
+                    
+                    print("out of range")
+                    return
+                temp = temp.next
+                
+            np.next = temp.next
+            temp.next = np
+                
+              
+    def delete_begin(self):
+        
+        if self.head is None:
+            print("list is empty")
+        
+        else:
+            
+            self.head = self.head.next
+    
+    def delete_end(self):
+        
+        if self.head is None:
+            print("List is empty")
+        
+        if self.head.next is None:
+            self.head = None
             return
-
+        
         temp = self.head
-        for _ in range(1,pos - 1):
-            if temp is None:
-                print("Position is out of range")
-                return 
+        
+        while temp.next.next:
+            
             temp = temp.next
-        np.next = temp.next
-        temp.next = np
-
-        if np.next is None:
-            self.tail = np
-
-
-    def display(self):
+        
+        temp.next = None
+            
+    
+    def delete_pos(self,pos):
+        
+        if pos ==1:
+            self.delete_begin()
+            return
+        
+        
         temp = self.head
+        
+        for _ in range(pos - 2):
+            
+            if temp.next is None:
+                print(" pos out of range")
+                return
+            
+            temp = temp.next
+        
+        temp.next = temp.next.next
+        
+            
+    def display(self):
+        
+        temp = self.head 
+        
         while temp:
             print(temp.data,end="-->")
-            temp=temp.next
+            temp = temp.next
         print("None")
-
+    
 sll=SLL()
+sll.add_end(30)
 
-sll.insert_end(300)
-sll.insert_beginning(5)
-sll.insert_end(60)
-sll.insert_position(4,350)
-sll.insert_position(3,200)
-sll.insert_position(3,500)
-sll.insert_position(2,100)
+sll.add_begin(10)
+sll.add_begin(20)
+sll.insert_pos(60,2)
+sll.display()
+print("after deletion")
+sll.delete_pos(3)
+
 sll.display()

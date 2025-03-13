@@ -54,16 +54,22 @@ class DLL:
 
         temp =self.head
 
-        while temp.next is not None:
+        while temp.next:
             temp = temp.next
         while temp is not None:
             print(temp.data,end="-->")
             temp = temp.prev
 
+    
+
+
+
+
 
 dll=DLL()
 dll.add_begin(10)
 dll.add_begin(20)
+dll.after_node(20,40)
 dll.add_end(30)
 dll.display()
 print("after reverse")
