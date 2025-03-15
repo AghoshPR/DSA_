@@ -51,15 +51,20 @@ class DLL:
             print("None")
 
     def rev(self):
-
-        temp =self.head
-
-        while temp.next:
-            temp = temp.next
-        while temp is not None:
-            print(temp.data,end="-->")
-            temp = temp.prev
-
+        
+        temp = self.head
+        
+        prev=None
+        
+        while temp:
+            
+            next = temp.next
+            temp.next = prev
+            temp.prev = next
+            prev = temp
+            temp = next
+            
+        self.head = prev
     
 
 

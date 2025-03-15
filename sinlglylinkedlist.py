@@ -109,7 +109,7 @@ class SLL:
         temp = self.head
         prev = None
         
-        while temp is not None and temp.next != val:
+        while temp is not None and temp.data != val:
             prev = temp
             temp = temp.next
             
