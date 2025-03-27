@@ -8,7 +8,7 @@ class Hashtable:
         
     def hash_function(self,key):
         
-        return hash(key) % self.size
+        return sum(ord(char) for char in key)%self.size
         
     
     def insert(self,key,value):
@@ -59,15 +59,12 @@ class Hashtable:
             
 ht = Hashtable()
 
-ht.insert("name", "Aghosh")
-ht.insert("age", 21)
-
-ht.insert("country", "India")
+ht.insert("orange",100)
 
 ht.display()
 
 print("after getting")
-print(ht.get('name'))
+print(ht.get('orange'))
 
 
 
