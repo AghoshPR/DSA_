@@ -46,7 +46,13 @@ def merge(arr):
     
 print(merge([54,34,56,7,8,67]))
         
-        
+s='aghosh'        
+
+st=merge(list(s))
+v=''.join(st)
+print(v)
+
+
         
         
         

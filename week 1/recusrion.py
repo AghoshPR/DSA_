@@ -43,12 +43,107 @@ char='l'
 
 print(rem_char(word,char))
     
-a='aghosh'
 
-print(a[:-1])
     
     
     
     
+
+
+def sum_n(n):
     
+    if n == 0:
+        return 0
+    
+    return n + sum_n(n-1)
+
+print(sum_n(5))
+
+
+def rev_str(s):
+    
+    if len(s)==0:
+        
+        return ''
+    
+    return s[-1] + rev_str(s[:-1])
+
+print(rev_str('aghosh'))
+
+
+def fact(n):
+    
+    if n==0:
+        return 1
+    
+    return n * fact(n-1)
+print(fact(5))
+
+
+
+def fibo(n):
+    
+    if n==1:
+        return 1
+    if n==0:
+        return 0
+        
+    return fibo(n-1) + fibo(n-2)
+    
+print(fibo(5))
+
+
+
+def is_even(n):
+    
+    if n== 0:
+        return True
+    if n==1:
+        return False
+        
+    return is_even(n-2)
+
+print(is_even(6))   
+
+
+def sum_digits(n):
+    
+    if n==0:
+        return 0
+        
+    return (n%10) + sum_digits(n//10)
+    
+print(sum_digits(35))
+
+
+
+def rev_num(n,rev=0):
+    
+    
+    
+    if n==0:
+        return rev
+        
+        
+    return rev_num(n//10,rev*10+n%10)
+    
+    
+print(rev_num(123))
+
+
+def palin(p):
+    
+    if len(p) <= 1:
+        return True
+    
+    return p[0]==p[-1] and palin(p[1:-1])
+    
+print(palin('aha'))
+        
+    
+    
+
+
+    
+
     

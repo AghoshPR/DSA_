@@ -6,7 +6,7 @@ class QueueUsingStack:
         self.s1 = []
         self.s2 = []
         
-    
+        
     def enqueue(self,data):
         
         self.s1.append(data)

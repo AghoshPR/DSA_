@@ -1,7 +1,7 @@
 stack = []
 
 def push():
-    element = input("Enter the element")
+    element = int(input("Enter the element"))
     stack.append(element)
     print(stack)
 

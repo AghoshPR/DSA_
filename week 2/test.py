@@ -142,3 +142,70 @@ stack=[1,2,3,4,5]
 print(rev(stack))
 
 
+
+
+def is_palindrome(s):
+    return s == s[::-1]
+    
+
+def longest(s):
+    
+    for i in range(len(s)):
+        
+        suffix = s[i:]
+        
+        if is_palindrome(suffix):
+            return suffix
+    return ""
+
+s='abcdcccdd'
+print(longest(s))
+
+
+
+def is_valid(s):
+    
+    stack = []
+    
+    hash_val = { ']':'[','}':'{',')':'(' }
+    
+    for i in s:
+        if i in hash_val:
+            top_element = stack.pop() if stack else '#'
+            
+            if hash_val[i] != top_element:
+                return False
+        else:
+            stack.append(i)
+    return not stack
+    
+s="()"
+print(is_valid(s))
+        
+
+def flatten(arr):
+    
+    res=[]
+    for item in arr:
+        if isinstance(item,list):
+            res.extend(flatten(item))
+        else:
+            res.append(item)
+    return res
+res=[1, [2, [3, 4], 5], 6]
+print(flatten(res))            
+            
+
+
+def rev(stack):
+    
+    if not stack:
+        return 
+    temp = stack.pop()
+    rev(stack)
+    stack.insert(0,temp)
+
+stack=[7,8,9,10]
+rev(stack)
+print(stack)
+    
