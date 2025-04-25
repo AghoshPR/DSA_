@@ -2,69 +2,83 @@ class TrieNode:
     
     def __init__(self):
         
-        self.children ={}
-        self.is_end=False
+        self.children = {}
+        self.end = False
         
-
+        
 class Trie:
     
-    
     def __init__(self):
+        
         self.root = TrieNode()
         
-    
     
     def insert(self,word):
         
         node = self.root
         
-        for char in word:
+        for ch in word:
             
-            if char not in node.children:
-                
-                node.children[char] = TrieNode()
+            if ch not in node.children:
+                node.children[ch] =  TrieNode()
             
-            node = node.children[char]
-        node.is_end = True
+            node = node.children[ch]
         
-    def search(self,word):
+        node.end = True
+        
+    
+    def autocomplete(self,prefix):
         
         node = self.root
         
-        for char in word:
-            
-            if char not in node.children:
-                
-                return False
-            node = node.children[char]
+        for ch in prefix:
+            if ch not in node.children:
+                return []
+            node = node.children[ch]
         
-        return node.is_end
-        
-    
-    def startswith(self,prefix):
-        
-        node = self.root
-        
-        for char in prefix:
-            
-            if char not in node.children:
-                
-                return False
-            node = node.children[char]
-        return True
-
-trie=Trie()
-
-trie.insert('hello')
- 
-        
-        
-print(trie.search("help"))
-print(trie.search("hel"))        
-print(trie.startswith("hel"))    
-print(trie.startswith("heaven"))
-        
-        
+        results = []
         
         
     
+        def dfs(current_node,path):
+            
+            if current_node.end:
+                results.append(path)
+                
+            for ch in current_node.children:
+                dfs(current_node.children[ch], path+ch)
+                
+    
+        
+        
+        
+        dfs(node,prefix)
+        return results
+    
+    def display(self):
+        def dfs(node,level):
+            for char,child in node.children.items():
+                print(" "*level,f"_{char}")
+                dfs(child,level+1)
+        dfs(self.root,0)
+
+trie = Trie()
+words = ["apple", "app", "apex", "bat", "ball", "ban"]
+
+for w in words:
+    trie.insert(w)
+
+trie.display()
+    
+print(trie.autocomplete('ap'))    
+
+
+
+    
+    
+            
+            
+            
+    
+        
+        
