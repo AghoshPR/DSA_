@@ -68,7 +68,7 @@ words = ["apple", "app", "apex", "bat", "ball", "ban"]
 for w in words:
     trie.insert(w)
 
-trie.display()
+
     
 print(trie.autocomplete('ap'))    
 

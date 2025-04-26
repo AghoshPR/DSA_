@@ -1,3 +1,5 @@
+
+#undierected
 class graph:
     
     def __init__(self):
@@ -39,12 +41,13 @@ class graph:
     def dfs(self, start, visited=None):
         if visited is None:
             visited = set()
-            print(start, end=' ')
-            visited.add(start)
-            
-            for neighbor in self.graph[start]:
-                if neighbor not in visited:
-                    self.dfs(neighbor, visited)
+        
+        print(start, end=' ')
+        visited.add(start)
+        
+        for neighbor in self.graph[start]:
+            if neighbor not in visited:
+                self.dfs(neighbor, visited)
 
     def shortest_path(self, start, end):
         queue = [(start, [start])]
@@ -111,3 +114,9 @@ g.dfs("A")
 
 # Check for cycle
 print("\nCycle Detected?", g.has_cycle())
+
+
+
+
+#directed
+

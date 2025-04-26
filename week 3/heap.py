@@ -33,3 +33,7 @@ arr=[4,10,4,5,1]
 
 heap_sort(arr)
 print(arr)
+
+# Time Complexity: O(n log n) (for both building the heap and sorting the heap)
+
+# Space Complexity: O(log n) (due to recursion stack)

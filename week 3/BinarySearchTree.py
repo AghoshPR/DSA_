@@ -206,6 +206,63 @@ class BST:
         print('max val',temp.value)
         return temp
     
+    def closest_value(self, target):
+        closest = self.value
+        temp = self  # Changed current to temp
+
+        while temp:
+            if abs(temp.value - target) < abs(closest - target):
+                closest = temp.value
+            
+            if target < temp.value:
+                temp = temp.left
+            elif target > temp.value:
+                temp = temp.right
+            else:
+                break  # target is exactly equal to the current value
+        
+        return closest
+    
+
+    def is_bst(self, node=None, left=float('-inf'), right=float('inf')):
+        if node is None:
+            node = self
+
+        # Base case: an empty tree is valid
+        if node is None:
+            return True
+
+        # If the current node's value is out of the allowed range, it's not a BST
+        if node.value <= left or node.value >= right:
+            return False
+
+        # Recursively check the left and right subtrees with updated ranges
+        return (self.is_bst(node.left, left, node.value) and 
+                self.is_bst(node.right, node.value, right))
+    
+    def is_balanced(self):
+        # Inner function to check height and balance
+        def check_balance(node):
+            if not node:
+                return 0  # Base case: empty node has height 0
+
+            left_height = check_balance(node.left)
+            if left_height == -1:  # If left subtree is unbalanced, return -1
+                return -1
+
+            right_height = check_balance(node.right)
+            if right_height == -1:  # If right subtree is unbalanced, return -1
+                return -1
+
+            # If the difference in height is greater than 1, it's unbalanced
+            if abs(left_height - right_height) > 1:
+                return -1
+
+            return 1 + max(left_height, right_height)  # Return height of current node
+
+        # Call the inner function and check for balance
+        return check_balance(self) != -1
+    
         
     def count(self):
         
@@ -258,6 +315,17 @@ class BST:
         inorder(self)
         print(f'{k}th largest:',self.result)
         return self.result
+    
+    def print_tree(self, level=0, prefix="Root: "):
+        if self.right:
+            self.right.print_tree(level + 1, prefix="    ")
+
+        print(" " * (4 * level) + prefix + str(self.value))
+
+        if self.left:
+            self.left.print_tree(level + 1, prefix="    ")
+
+
         
         
 
@@ -301,23 +369,35 @@ root.kth_largest(3)
 print('height is',root.height())     
 print("Depth :", root.depth(60))   
         
+if root.is_bst():
+    print("This is a valid BST.")
+else:
+    print("This is not a valid BST.")   
+
+
+if root.is_balanced():
+    print("The tree is balanced.")
+else:
+    print("The tree is not balanced.")
+
+        
+# Find closest value to a target
+target = 65
+print(f"Closest value to {target}: {root.closest_value(target)}")       
         
         
         
         
+# Shortest path in graph     
+# Shortest path in graph
+# Longest prefix in a trie,     
+# Delete node from heap       
+# Suffix trie
+# Clone Graph    
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
         

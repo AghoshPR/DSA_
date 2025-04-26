@@ -58,11 +58,14 @@ class minHeap:
             
         
 minh = minHeap()
-minh.insert(5)
-minh.insert(3)
-minh.insert(8)
-minh.insert(2) 
-minh.insert(13)  
+# minh.insert(5)
+# minh.insert(3)
+# minh.insert(8)
+# minh.insert(2) 
+# minh.insert(13)
+c=[45,6,7,5,2,234,1,3]  
+for i in c:
+    minh.insert(i)
         
 print(minh.peek_min())     # ➜ 3
 print(minh.extract_min())  # ➜ 3

@@ -23,7 +23,7 @@ class BinaryTree:
             self.right = BinaryTree(value)
         else:
             new_node = BinaryTree(value)
-            self.left = self.right
+            new_node.right = self.right
             self.right = new_node
             
     
@@ -54,8 +54,7 @@ class BinaryTree:
     
     def levelorder(self):
         
-        if self is None:
-            return
+       
         
         queue = [self]
         
