@@ -302,7 +302,7 @@ class BST:
         
         def inorder(node):
             
-            if not node or self.result is not None:
+            if not node:
                 return
             
             inorder(node.right)

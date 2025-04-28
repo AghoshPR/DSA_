@@ -5,27 +5,31 @@ class graph:
     def __init__(self):
         self.graph = {}
     
-    def add_node(self, node):
-        if node not in self.graph:
-            self.graph[node] = []
+    def add_edge(self, node1, node2=None):
+        # Always add node1 first
+        if node1 not in self.graph:
+            self.graph[node1] = []
+
+        # If node2 is given, add node2 and create edge
+        if node2:
+            if node2 not in self.graph:
+                self.graph[node2] = []
+            self.graph[node1].append(node2)
+            self.graph[node2].append(node1)
     
-    def add_edge(self, node1, node2):
-        self.add_node(node1)
-        self.add_node(node2)
-        self.graph[node1].append(node2)
-        self.graph[node2].append(node1)
-    
-    def remove_edge(self, node1, node2):
-        if node1 in self.graph and node2 in self.graph[node1]:
-            self.graph[node1].remove(node2)
-        if node2 in self.graph and node1 in self.graph[node2]:
-            self.graph[node2].remove(node1)
-            
-    def remove_node(self, node):
-        if node in self.graph:
-            for neighbor in self.graph[node]:
-                self.graph[neighbor].remove(node)
-            del self.graph[node]
+    def remove_node(self, node1, node2=None):
+        if node2:
+            # remove edge between node1 and node2
+            if node1 in self.graph and node2 in self.graph[node1]:
+                self.graph[node1].remove(node2)
+            if node2 in self.graph and node1 in self.graph[node2]:
+                self.graph[node2].remove(node1)
+        else:
+            # remove node completely
+            if node1 in self.graph:
+                for neighbor in list(self.graph[node1]):  # list() to avoid looping issue
+                    self.graph[neighbor].remove(node1)
+                del self.graph[node1]
     
     def bfs(self, start):
         visited = set()
@@ -100,9 +104,16 @@ g.add_edge("B", "D")
 g.print_graph()
 
 print("\nRemoving edge A-B and node C...")
-g.remove_edge("A", "B")
-g.remove_node("C")
-g.print_graph()
+
+g.remove_node('A', 'B')  # remove edge A <-> B
+print(g.graph)
+# {'A': ['C'], 'B': ['D'], 'C': ['A'], 'D': ['B']}
+
+g.remove_node('C')       # remove node C
+print(g.graph)
+
+
+
 
 # BFS Traversal
 print("BFS Traversal:")
@@ -111,6 +122,9 @@ g.bfs("A")
 # DFS Traversal
 print("\nDFS Traversal:")
 g.dfs("A")
+
+g.shortest_path('A', 'E')
+
 
 # Check for cycle
 print("\nCycle Detected?", g.has_cycle())

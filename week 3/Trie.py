@@ -47,11 +47,7 @@ class Trie:
                 
             for ch in current_node.children:
                 dfs(current_node.children[ch], path+ch)
-                
-    
-        
-        
-        
+
         dfs(node,prefix)
         return results
     
