@@ -116,7 +116,51 @@ class SLL:
         if temp is None:
             print("Value not found")
         
-        prev.next = temp.next            
+        prev.next = temp.next 
+
+
+    def middlevalue(self):
+        
+        slow=self.head
+        fast=self.head
+        
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+            
+        
+        if slow:
+            print('value is ',slow.data)
+            
+    def remove_middle(self):
+        
+        if self.head is None or self.head.next is None:
+            self.head=None
+            return
+        
+        slow=self.head
+        fast=self.head
+        prev=None
+        while fast and fast.next:
+            fast=fast.next.next
+            prev=slow
+            slow=slow.next
+            
+        prev.next=slow.next
+
+    def rev(self):
+    
+        prev=None
+        temp=self.head
+        
+        while temp:
+            
+            next_node=temp.next
+            temp.next=prev
+            prev=temp
+            temp=next_node
+            
+        self.head=prev           
             
     def display(self):
         
@@ -148,6 +192,6 @@ sll.del_pos(3)
 sll.del_pos(2)
 sll.display()
         
-        
+sll.rev()   
         
      

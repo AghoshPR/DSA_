@@ -54,7 +54,13 @@ print(v)
 
 
         
-        
+# | Type       | Complexity                   |
+# | ---------- | ---------------------------- |
+# | Best Case  | **O(n log n)**               |
+# | Average    | **O(n log n)**               |
+# | Worst Case | **O(n log n)**               |
+# | Space      | **O(n)** (needs extra array) |
+
         
             
     

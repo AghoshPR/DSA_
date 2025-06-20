@@ -51,4 +51,8 @@ print(bs(arr,target,0,len(arr)-1))
     
     
     
-    
+# | Case       | Complexity   | Explanation                                                |
+# | ---------- | ------------ | ---------------------------------------------------------- |
+# | Best Case  | **O(1)**     | When the middle element is the target.                     |
+# | Average    | **O(log n)** | Each step cuts the search space in half.                   |
+# | Worst Case | **O(log n)** | Same as average — keeps halving until one element is left. |

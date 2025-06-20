@@ -21,3 +21,11 @@ def inserstion(arr):
 
 
 print(inserstion([31,56,7,98,12,45]))            
+
+
+# | Type       | Complexity                |
+# | ---------- | ------------------------- |
+# | Best Case  | **O(n)** (already sorted) |
+# | Average    | **O(n²)**                 |
+# | Worst Case | **O(n²)**                 |
+# | Space      | **O(1)** (in-place)       |

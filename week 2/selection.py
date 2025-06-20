@@ -29,3 +29,12 @@ for i in range(len(lis)-1):
         lis[i],lis[m_ind] = lis[m_ind],lis[i]
         
 print(lis)
+
+
+
+# | Type       | Complexity          |
+# | ---------- | ------------------- |
+# | Best Case  | **O(n²)**           |
+# | Average    | **O(n²)**           |
+# | Worst Case | **O(n²)**           |
+# | Space      | **O(1)** (in-place) |
